@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.3//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_3.dtd">
+
+<generatorConfiguration>
+
+    <classPathEntry location="D:/DEV_IDE/repository/mysql/mysql-connector-java/5.1.36/mysql-connector-java-5.1.36.jar"/>
+
+    <!-- targetRuntime(defaultvalue:MyBatis3,annotation:MyBatis3Simple) -->
+    <context id="MysqlContext" targetRuntime="MyBatis3Simple">
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/learntest"
+                        userId="root"
+                        password="111111">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="test.model" targetProject="src\test\java">
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!--<sqlMapGenerator targetPackage="test.xml"  targetProject="src\test\resources"/>-->
+
+        <!-- type="XMLMAPPER" 生成xml文件，接口依赖xml文件。MIXEDMAPPER：混合模式。ANNOTATEDMAPPER：注解模式。建议使用XMLMAPPER形式。  但是我们单位领导比较奇葩，特别喜欢用注解。没辙。-->
+        <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="test.dao"  targetProject="src\test\java"/>
+
+        <table tableName="%" dmoSuffix="DMO" daoSuffix="DAO">
+            <generatedKey column="id" sqlStatement="Mysql"/>
+        </table>
+    </context>
+</generatorConfiguration>
